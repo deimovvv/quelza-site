@@ -77,17 +77,19 @@ export default class Experience {
     });
  
     let allDone = [fontOpen, fontPlayfair, preloadImages];
+
     this.currentScroll = 0;
     this.previousScroll = 0;
     this.raycaster = new THREE.Raycaster();
     this.mouse = new THREE.Vector2();
   
     Promise.all(allDone).then(() => {
+      this.addImages();
+    this.setPosition();
       this.scroll = new Scroll();
     this.resize();
     this.setupResize();
-    this.addImages();
-    this.setPosition();
+    
     this.mouseMove();
 
     this.addObjects();
