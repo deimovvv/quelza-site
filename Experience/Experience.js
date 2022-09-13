@@ -68,13 +68,26 @@ export default class Experience {
     });
  
     // Preload images
+/* 
+    const img = [...document.querySelectorAll("img")]
+    
+    for (let i = 0; i < img.length; i++) {
+     const loadImages = new Promise((resolve, reject) => {
+      
+      
+     })
+      
+    } */
+
     const preloadImages = new Promise((resolve, reject) => {
       imagesLoaded(
         document.querySelectorAll("img"),
         { background: true },
-        resolve
+        resolve()
       );
     });
+
+    console.log(preloadImages);
  
     let allDone = [fontOpen, fontPlayfair, preloadImages];
 
