@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
-//import imagesLoaded from "imagesLoaded";
-//import FontFaceObserver from "FontFaceObserver";
+import imagesLoaded from "imagesLoaded";
+import FontFaceObserver from "FontFaceObserver";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import Scroll from "./Scroll";
@@ -55,38 +55,35 @@ export default class Experience {
 
     this.images = [...document.querySelectorAll("img")];
 
-    /* const fontOpen = new Promise((resolve) => {
+     const fontOpen = new Promise((resolve) => {
       new FontFaceObserver("Open Sans").load().then(() => {
         resolve();
       });
     });
- */
-   /*  const fontPlayfair = new Promise((resolve) => {
+ 
+    const fontPlayfair = new Promise((resolve) => {
       new FontFaceObserver("Playfair Display").load().then(() => {
         resolve();
       });
     });
- */
+ 
     // Preload images
-   /*  const preloadImages = new Promise((resolve, reject) => {
+    const preloadImages = new Promise((resolve, reject) => {
       imagesLoaded(
-        document.querySelector("img"),
+        document.querySelectorAll("img"),
         { background: true },
         resolve
       );
     });
- */
-    //let allDone = [fontOpen, fontPlayfair, preloadImages];
+ 
+    let allDone = [fontOpen, fontPlayfair, preloadImages];
     this.currentScroll = 0;
     this.previousScroll = 0;
     this.raycaster = new THREE.Raycaster();
     this.mouse = new THREE.Vector2();
   
-   /*  Promise.all(allDone).then(() => {
-     
-    }); */
-
-    this.scroll = new Scroll();
+    Promise.all(allDone).then(() => {
+      this.scroll = new Scroll();
     this.resize();
     this.setupResize();
     this.addImages();
@@ -103,6 +100,9 @@ export default class Experience {
       this.setPosition();
     });
 
+    }); 
+
+   
     this.time = 0;
 
     // Add Model
