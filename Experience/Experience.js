@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 //import imagesLoaded from "imagesLoaded";
-import FontFaceObserver from "FontFaceObserver";
+import FontFaceObserver from "fontfaceobserver";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import Scroll from "./Scroll";
