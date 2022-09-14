@@ -68,16 +68,19 @@ export default class Experience {
     });
  
     // Preload images
-/* 
-    const img = [...document.querySelectorAll("img")]
-    
-    for (let i = 0; i < img.length; i++) {
-     const loadImages = new Promise((resolve, reject) => {
+
+    let img = [...document.querySelectorAll("img")]
+    console.log(img);
+    for ( img = 0; img < img.length; img++) {
+    /*  const loadImages = new Promise((resolve, reject) => {
+        
       
+     }) */
+      img = img.length
+
+     console.log(img);
       
-     })
-      
-    } */
+    }
 
     const preloadImages = new Promise((resolve, reject) => {
       imagesLoaded(
