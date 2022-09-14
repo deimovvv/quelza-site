@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
-import imagesLoaded from "imagesLoaded";
-import FontFaceObserver from "fontFaceObserver";
+//import imagesLoaded from "imagesLoaded";
+import FontFaceObserver from "FontFaceObserver";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import Scroll from "./Scroll";
@@ -55,6 +55,9 @@ export default class Experience {
 
     this.images = [...document.querySelectorAll("img")];
 
+   
+   
+
      const fontOpen = new Promise((resolve) => {
       new FontFaceObserver("Open Sans").load().then(() => {
         resolve();
@@ -65,35 +68,43 @@ export default class Experience {
       new FontFaceObserver("Playfair Display").load().then(() => {
         resolve();
       });
+      
     });
- 
-    // Preload images
 
-    let img = [...document.querySelectorAll("img")]
-    console.log(img);
-    for ( img = 0; img < img.length; img++) {
-    /*  const loadImages = new Promise((resolve, reject) => {
+    const imgs = [...document.querySelectorAll("img")]
+    //console.log(imgs);
+  
+
+    let arrPromesa = []
+    for (let i = 0; i < imgs.length; i++) {
+      arrPromesa[i] =  new Promise((resolve) => {
+        resolve(imgs[i])
         
-      
-     }) */
-      img = img.length
+      });
+      arrPromesa[i].then(datos => {
+        console.log('img', datos);
+       /*  arrPromesa.push(datos) */
+      })
 
-     console.log(img);
-      
+     // console.log('for',imgs[i]);
+
+
     }
 
-    const preloadImages = new Promise((resolve, reject) => {
+   const iloaded = Promise.all(arrPromesa)
+   .then(() => {})
+
+ /*    const preloadImages = new Promise((resolve, reject) => {
       imagesLoaded(
         document.querySelectorAll("img"),
         { background: true },
         resolve
       );
     });
+ */
 
-    console.log(preloadImages);
- 
-    let allDone = [fontOpen, fontPlayfair, preloadImages];
-
+    let allDone = [fontOpen, fontPlayfair, iloaded];
+    console.log(allDone);
     this.currentScroll = 0;
     this.previousScroll = 0;
     this.raycaster = new THREE.Raycaster();
@@ -105,9 +116,7 @@ export default class Experience {
       this.scroll = new Scroll();
     this.resize();
     this.setupResize();
-    
     this.mouseMove();
-
     this.addObjects();
     //this.addLights()
    // this.settings();
